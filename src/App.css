@@ -1,0 +1,148 @@
+#root {
+  justify-content: center;
+  align-items: center;  
+  padding: 2rem; 
+}
+.nav{
+  display: flex;
+  min-width: 1000px;
+  justify-content: center;
+  gap: 2rem;
+  width: 1200px auto;
+  height: 2.5rem; 
+  background: rgb(255, 255, 255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(255, 255, 255,0.2);
+  color: white;
+  border-radius: 59px;
+
+}
+.nav a{
+  color: white;
+  text-decoration: none;
+  padding:0.5rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: 500;
+
+}
+.nav a::after{
+  content: '';
+  position: absolute;
+  bottom:0;
+  left: 10%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+.nav a:hover::after{
+  width: 80%;
+}
+.ss{
+  color: white;
+}
+.container{
+  margin: 100px 0px 10px -20px;
+  width: 900px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  line-height: 5.7em;
+}
+.greet{
+  font-size: 30px;
+  font-family: cursive;
+  color: chartreuse;
+}
+.name{
+  font-size: 8.3rem;
+  width: 1000px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.field{
+  width: 25ch;
+  text-wrap: nowrap;
+  overflow: hidden;
+  margin-left: 430px;
+  font-size: 50px;
+  animation: typing 2s steps(40) infinite alternate-reverse;
+}
+@media (max-width: 1367px) {
+  .container{
+     height: 500px;
+     line-height: 5.8em;     
+  margin: 50px 10px 10px 50px;}
+.field{
+  margin-left: 300px;
+}
+  .name{
+    font-size: 6rem;
+  }
+  
+}
+
+.field span::after{
+  content: 'Software Enginer';
+  animation: words 12s infinite;
+  overflow: hidden;
+}
+@keyframes words {
+  0%, 33%{
+    content: 'software Developer';
+    color: aqua;
+  }
+  34%, 66% {
+    content: 'Web Developer';
+    color: cadetblue;
+  }
+  67%, 100% {
+    content: 'AI Enthusiast';
+    color: aquamarine;
+  }
+}
+@keyframes typing {
+  from{width: 0ch;}
+}
+
+.logo {
+ 
+  padding:0.5rem 1.5rem;
+  position: absolute;
+  bottom:0;
+  left: 0;
+  transform: translateY(-30%);
+  height: 2px;
+  transition: filter 300ms;
+  font-weight: 500;
+  font-size: larger;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+
+
+.read-the-docs {
+  color: #888;
+}
