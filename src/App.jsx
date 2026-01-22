@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import ExplodingStack from './assets/explodingStack'
 import About from './assets/About'
+import Contact from './assets/Contact'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,8 +14,8 @@ function App() {
       <div>       
         <div class="nav">
            <p class="logo">Portfoilio</p>          
-            <a>home</a>
-            <a>about</a>
+            <a href='.'>home</a>
+            <a href='#about'>about</a>
             <a>Contact</a>
         
         </div>
@@ -25,7 +26,17 @@ function App() {
       <div className="name">Kutlwano Nhlapo</div>
       <div className="field"><span></span></div>
       </div>
-      <About/>
+       
+       
+    
+      <div id='about'>
+        <About/>        
+      </div>
+       <div id='contact'>
+      
+         <Contact/>
+      </div>
+    
       <ExplodingStack />
     <script src="script.js"></script>
     </>

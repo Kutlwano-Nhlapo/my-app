@@ -105,7 +105,7 @@
 
 .card.cover {
   z-index: 100;
-  background: linear-gradient(135deg,#004d4d, #001a1a);
+  background:  linear-gradient(to bottom right, #5648ec, #cc55f7);
   color: white;
   display: flex;
   justify-content: center;

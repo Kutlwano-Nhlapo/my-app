@@ -25,7 +25,7 @@ function About() {
           </p>
 
           <p>
-            I don't just write code; I manage outcomes. I rely on <strong>Agile methodology</strong> 
+            I don't just write code; I manage outcomes. I rely on <strong>Agile methodology </strong> 
             to keep projects organized, ensuring that speed never comes at the cost of stability.
           </p>
 
@@ -39,7 +39,7 @@ function About() {
             <span>Data Privacy</span>
           </div>
 
-          <button className="cv-btn">Download My CV</button>
+          <a href='./Kutlwano Nhlapo Resume.pdf' className="cv-btn">Download My CV</a>
         </div>
 
         {/* RIGHT COLUMN: The Image */}

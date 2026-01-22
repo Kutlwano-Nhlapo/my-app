@@ -55,7 +55,7 @@
 .greet{
   font-size: 30px;
   font-family: cursive;
-  color: chartreuse;
+  color: rgb(153, 0, 255);
 }
 .name{
   font-size: 8.3rem;
@@ -92,15 +92,15 @@
 @keyframes words {
   0%, 33%{
     content: 'software Developer';
-    color: aqua;
+    color: #a955f79e;
   }
   34%, 66% {
     content: 'Web Developer';
-    color: cadetblue;
+    color:  #aa48ec;
   }
   67%, 100% {
-    content: 'AI Enthusiast';
-    color: aquamarine;
+    content: 'Tech Enthusiast';
+    color: rgb(244, 127, 255);
   }
 }
 @keyframes typing {
