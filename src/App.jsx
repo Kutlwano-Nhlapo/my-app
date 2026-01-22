@@ -12,16 +12,16 @@ function App() {
   return (
     <>
       <div>       
-        <div class="nav">
-           <p class="logo">Portfoilio</p>          
-            <a href='.'>home</a>
+        <div className="nav">
+           <p className="logo">Portfolio</p>          
+            <a href='#home'>home</a>
             <a href='#about'>about</a>
-            <a>Contact</a>
+            <a href='#contact'>Contact</a>
         
         </div>
        
       </div>
-      <div className="container">
+      <div id='home' className="container">
       <div className="greet">Hi. I am</div>
       <div className="name">Kutlwano Nhlapo</div>
       <div className="field"><span></span></div>
@@ -38,7 +38,6 @@ function App() {
       </div>
     
       <ExplodingStack />
-    <script src="script.js"></script>
     </>
   )
 }
