@@ -1,15 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ExplodingStack.css';
 
 const projects = [
-  { id: 1, title: 'Ward System', desc: '.NET MVC', r: '-5deg', url: 'https://soit-iis.mandela.ac.za/grp-03-14', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=60' },
-  { id: 2, title: 'Scripts', desc: 'Integration', r: '3deg', url: '/NoPage.html', img: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=500&q=60' },
-  { id: 3, title: 'Clothing App', desc: 'Mobile', r: '-2deg', url: './NoPage.html', img: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=500&q=60' },
-  { id: 4, title: '3D Portfolio', desc: 'Blender', r: '6deg', url: './NoPage.html', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=60' },
+  { 
+    id: 1, 
+    title: 'Ward System', 
+    desc: 'ASP.NET Core MVC',
+    d: 'SQL Server',
+    d2: 'Entity Framework',
+    style: 'JavaScript', 
+    r: '-5deg', 
+    url: 'https://soit-iis.mandela.ac.za/grp-03-14', 
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=60',
+    external: true
+  },
+  { 
+    id: 2, 
+    title: 'Scripts', 
+    desc: 'Integration',
+    d: 'Python',
+    d2: 'Automation',
+    style: 'API', 
+    r: '3deg', 
+    url: '/not-found', 
+    img: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=500&q=60',
+    external: false
+  },
+  { 
+    id: 3, 
+    title: 'Clothing App', 
+    desc: 'Mobile',
+    d: 'React Native',
+    d2: 'Firebase',
+    style: 'UI/UX', 
+    r: '-2deg', 
+    url: '/not-found', 
+    img: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=500&q=60',
+    external: false
+  },
+  { 
+    id: 4, 
+    title: '3D Portfolio', 
+    desc: 'Blender',
+    d: 'Three.js',
+    d2: 'WebGL',
+    style: '3D Modeling', 
+    r: '6deg', 
+    url: '/not-found', 
+    img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=60',
+    external: false
+  },
 ];
 
 const ExplodingStack = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isOpen) {
@@ -35,14 +81,22 @@ const ExplodingStack = () => {
     return { x: `${xOffset}%`, y: `${yOffset}%` };
   };
 
+  const handleProjectClick = (e, project) => {
+    e.stopPropagation();
+    if (project.external) {
+      window.open(project.url, '_blank', 'noopener,noreferrer');
+    } else {
+      navigate('/not-found');
+    }
+  };
+
   return (
     <div className={`stack-container ${isOpen ? 'open' : ''}`}>
-      
       <div 
         className="stack-area" 
         onClick={() => setIsOpen(!isOpen)}
       >
-         <p className="head"><b>My Projects</b></p>
+        <p className="head"><b>My Projects</b></p>
         <div className="card cover">
           <h3>My Portfolio</h3>
           <p>Click to view</p>
@@ -62,15 +116,18 @@ const ExplodingStack = () => {
               <img src={project.img} alt={project.title} />
               <div className="card-content">
                 <h4>{project.title}</h4>
-                <a 
-                  href={project.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
+                <button 
+                  className="project-link"
+                  onClick={(e) => handleProjectClick(e, project)}
                 >
-                  click here to visit the site
-                </a>
-                <p>{project.desc}</p>
+                  Click here to visit the site
+                </button>
+                <div className='stack-row'>
+                  <span>{project.desc}</span>
+                  <span>{project.d}</span>
+                  <span>{project.d2}</span>
+                  <span>{project.style}</span>                  
+                </div>
               </div>
             </div>
           );

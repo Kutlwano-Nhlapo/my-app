@@ -10,25 +10,26 @@ function About() {
           <h2 className="section-title">About Me</h2>
           <h3>Systems Thinker & Developer</h3>
           
-          <p>
-            What truly sparks me is the <strong>internet as a system</strong>—the intricate 
-            dance of data moving across the world in milliseconds. My goal is to build 
-            the infrastructure that makes that happen.
-          </p>
+         <div className="about-description">
+            <p>
+              What truly sparks me is the <strong>internet as a system</strong>—the intricate 
+              dance of data moving across the world in milliseconds. My goal is to build 
+              the infrastructure that makes that happen.
+            </p>
 
-          <p>
-            I specialize in building secure, scalable web applications using 
-            <strong>.NET</strong> and <strong>SQL</strong>. However, I believe that 
-            modern software requires more than just functionality; it requires responsibility. 
-            That is why I focus heavily on <strong>Data Privacy</strong> and use 
-            <strong> Python</strong> to understand the data science behind the code.
-          </p>
+            <p>
+              I specialize in building secure, scalable web applications using 
+              <strong> .NET</strong> and <strong>SQL</strong>. However, I believe that 
+              modern software requires more than just functionality; it requires responsibility. 
+              That's why I focus heavily on <strong>Data Privacy</strong> and use 
+              <strong> Python</strong> to understand the data science behind the code.
+            </p>
 
-          <p>
-            I don't just write code; I manage outcomes. I rely on <strong>Agile methodology </strong> 
-            to keep projects organized, ensuring that speed never comes at the cost of stability.
-          </p>
-
+            <p>
+              I don't just write code; I manage outcomes. I rely on <strong>Agile methodology</strong> 
+              to keep projects organized, ensuring that speed never comes at the cost of stability.
+            </p>
+          </div>
           {/* Key Skills Tags - Updated for You */}
           <div className="skills-row">
             <span>ASP.NET</span>

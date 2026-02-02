@@ -1,5 +1,5 @@
 .section{
-  background-color: #1a1a1a; /* Dark theme */
+  background-color: #1a1a1a;
   color: #fff;
   min-height: 100vh;
   display: flex;
@@ -7,20 +7,22 @@
   align-items: center;
   padding: 50px 20px;
 } 
+
 .about{
-   display: flex; /* Creates the row */
-  flex-direction: row; /* Align side-by-side */
-  align-items: center; /* Vertically center them */
-  gap: 50px; /* Space between text and image */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
   max-width: 1100px;
   width: 100%;
 }
+
 .about-text {
-  flex: 1; /* Takes up 50% space */
+  flex: 1;
 }
 
 .section-title {
-  color: rgb(153, 0, 255); /* Accent color */
+  color: rgb(153, 0, 255);
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -30,13 +32,26 @@
 .about-text h3 {
   font-size: 2.5rem;
   margin: 0 0 20px 0;
+  line-height: 1.2;
 }
 
-.about-text p {
-  line-height: 1.6;
+/* DESCRIPTION PARAGRAPHS */
+.about-description p {
+  line-height: 1.8;
   color: #ccc;
   font-size: 1.1rem;
   margin-bottom: 20px;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.about-description p:last-child {
+  margin-bottom: 30px;
+}
+
+.about-description strong {
+  color: rgb(153, 0, 255);
+  font-weight: 600;
 }
 
 /* SKILLS TAGS */
@@ -53,98 +68,394 @@
   border-radius: 20px;
   font-size: 0.9rem;
   border: 1px solid #444;
+  transition: all 0.3s ease;
+}
+
+.skills-row span:hover {
+  background: rgb(153, 0, 255);
+  border-color: rgb(153, 0, 255);
+  transform: translateY(-2px);
 }
 
 /* CV BUTTON */
 .cv-btn {
   padding: 12px 30px;
-  background:  linear-gradient(to right, #9333ea, #db2777, #dc2626);
+  background: linear-gradient(to right, #9333ea, #db2777, #dc2626);
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.2s;
+  font-weight: 500;
 }
 
 .cv-btn:hover {
   transform: translateY(-5px);
-  background: linear-gradient(to right, #9333ea, #db2777, #dc2626);
+  box-shadow: 0 10px 20px rgba(147, 51, 234, 0.4);
 }
 
-/* --- REPLACE YOUR EXISTING IMAGE COLUMN CSS WITH THIS --- */
-
-/* 4. IMAGE COLUMN (The Container) */
+/* IMAGE COLUMN */
 .about-image {
   flex: 1;
-  position: relative; /* Establishes context for absolute positioning */
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* Align items to the bottom so they sit together */
-  min-height: 450px;     /* Increased height to make room for the head popping up */
-  padding-bottom: 20px;  /* Slight padding from the bottom edge */
+  align-items: flex-end;
+  min-height: 450px;
+  padding-bottom: 20px;
 }
 
-/* The Profile Picture (The Pop-out magic sits here) */
 .about-image img {
-  /* 1. Sizing: Make it taller than it is wide so the head has room */
   width: 500px; 
-  height: 600px; /* Taller height */
-  object-fit: cover; /* Ensure image fills the space without stretching */
-  
-  /* 2. Layering: Sit ON TOP of the red ring */
+  height: 600px;
+  object-fit: cover;
   position: relative;
   z-index: 2; 
-  
-  /* 3. Positioning: Shift it UP so the head clears the top of the ring */
-  transform: translateY(-40px); /* Move up by 40px */
-  
-  /* 4. The Shape Magic: clip-path */
-  /* This creates a "tombstone" shape: flat top, rounded bottom. */
-  /* inset(top right bottom left round top-left top-right bottom-right bottom-left) */
+  transform: translateY(-40px);
   clip-path: inset(0 0 0 0 round 0 0 50% 50%);
-  
-  /* Optional shadow (applied to the clipped shape) */
   filter: drop-shadow(0 10px 20px rgba(167, 153, 153, 0.5));
 }
 
-/* The Red Ring (Repurposing .img-backdrop) */
 .img-backdrop {
-  /* Position absolutely at the bottom center of the container */
   position: absolute;
-  bottom: 55px; /* Match the container padding */
+  bottom: 55px;
   left: 50%;
-  transform: translateX(-50%); /* Center horizontally */
-  
-  /* Size: Should match the WIDTH of the image */
+  transform: translateX(-50%);
   width: 400px; 
-  height: 360px; /* Perfect circle */
-  
-  /* The Visual Ring */
-  border: 4px solid rgb(153, 0, 255); /* Made slightly thicker for emphasis */
+  height: 360px;
+  border: 4px solid #9333ea;
   border-radius: 50%;
-  z-index: 1; /* Sits BEHIND the image */
-  
-  /* Optional glow */
+  z-index: 1;
   box-shadow: 0 0 30px rgba(107, 255, 248, 0.3);
   pointer-events: none; 
 }
 
-/* --- MOBILE ADJUSTMENTS --- */
-@media (max-width: 768px) {
-  /* Scale everything down proportionally for mobile */
-  .about-image {
-     min-height: 350px;
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+
+/* Large Desktops (1440px and above) */
+@media (min-width: 1440px) {
+  .about {
+    max-width: 1300px;
+    gap: 80px;
+  }
+  
+  .about-text h3 {
+    font-size: 3rem;
+  }
+  
+  .about-description p {
+    font-size: 1.15rem;
+    line-height: 1.9;
   }
   
   .about-image img {
-    width: 280px;
-    height: 340px;
+    width: 550px;
+    height: 650px;
+  }
+  
+  .img-backdrop {
+    width: 450px;
+    height: 410px;
+  }
+}
+
+/* Standard Desktop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .about {
+    max-width: 1000px;
+    gap: 40px;
+  }
+  
+  .about-text h3 {
+    font-size: 2.2rem;
+  }
+  
+  .about-description p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  
+  .about-image img {
+    width: 420px;
+    height: 520px;
+  }
+  
+  .img-backdrop {
+    width: 350px;
+    height: 320px;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .about {
+    flex-direction: column;
+    gap: 40px;
+    padding: 30px 20px;
+  }
+  
+  .section {
+    padding: 40px 20px;
+  }
+  
+  .about-text {
+    text-align: center;
+    max-width: 700px;
+  }
+  
+  .about-text h3 {
+    font-size: 2rem;
+  }
+  
+  .about-description p {
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+  
+  .skills-row {
+    justify-content: center;
+  }
+  
+  .about-image {
+    min-height: 400px;
+  }
+  
+  .about-image img {
+    width: 350px;
+    height: 450px;
+    transform: translateY(-35px);
+  }
+  
+  .img-backdrop {
+    width: 300px;
+    height: 280px;
+    bottom: 45px;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (600px - 767px) */
+@media (max-width: 767px) and (min-width: 600px) {
+  .about {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 15px;
+  }
+  
+  .section {
+    padding: 30px 15px;
+  }
+  
+  .about-text {
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 1rem;
+  }
+  
+  .about-text h3 {
+    font-size: 1.8rem;
+  }
+  
+  .about-description p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  
+  .skills-row {
+    justify-content: center;
+  }
+  
+  .skills-row span {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+  
+  .cv-btn {
+    padding: 10px 25px;
+    font-size: 0.95rem;
+  }
+  
+  .about-image {
+    min-height: 350px;
+  }
+  
+  .about-image img {
+    width: 300px;
+    height: 380px;
     transform: translateY(-30px);
   }
   
   .img-backdrop {
-    width: 280px;
+    width: 260px;
+    height: 240px;
+    bottom: 40px;
+  }
+}
+
+/* Mobile Portrait (480px - 599px) */
+@media (max-width: 599px) and (min-width: 480px) {
+  .about {
+    flex-direction: column;
+    gap: 25px;
+    padding: 15px 10px;
+  }
+  
+  .section {
+    padding: 25px 10px;
+  }
+  
+  .about-text {
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .about-text h3 {
+    font-size: 1.6rem;
+  }
+  
+  .about-description p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  
+  .skills-row {
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .skills-row span {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+  
+  .cv-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .about-image {
+    min-height: 320px;
+  }
+  
+  .about-image img {
+    width: 260px;
+    height: 330px;
+    transform: translateY(-25px);
+  }
+  
+  .img-backdrop {
+    width: 230px;
+    height: 210px;
+    bottom: 35px;
+  }
+}
+
+/* Small Mobile (below 480px) */
+@media (max-width: 479px) {
+  .about {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  .section {
+    padding: 20px 10px;
+    min-height: auto;
+  }
+  
+  .about-text {
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  
+  .about-text h3 {
+    font-size: 1.4rem;
+    margin: 0 0 15px 0;
+  }
+  
+  .about-description p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    text-align: left;
+    margin-bottom: 14px;
+    padding: 0 5px;
+  }
+  
+  .about-description strong {
+    font-weight: 700;
+  }
+  
+  .skills-row {
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .skills-row span {
+    font-size: 0.75rem;
+    padding: 5px 8px;
+  }
+  
+  .cv-btn {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .about-image {
+    min-height: 280px;
+  }
+  
+  .about-image img {
+    width: 220px;
     height: 280px;
+    transform: translateY(-20px);
+  }
+  
+  .img-backdrop {
+    width: 200px;
+    height: 180px;
+    bottom: 30px;
+    border: 3px solid rgb(153, 0, 255);
+  }
+}
+
+/* Extra Small Devices (below 360px) */
+@media (max-width: 359px) {
+  .about-text h3 {
+    font-size: 1.2rem;
+  }
+  
+  .about-description p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  
+  .about-image img {
+    width: 180px;
+    height: 240px;
+  }
+  
+  .img-backdrop {
+    width: 170px;
+    height: 150px;
   }
 }

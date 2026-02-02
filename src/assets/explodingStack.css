@@ -1,25 +1,46 @@
 /* 1. CONTAINER: Covers screen but is transparent/clickable-through initially */
 
-  /* Styling for the "My Projects" text */
+/* Styling for the "My Projects" text */
 .head {
   visibility: hidden;
 }
     
-.stack-container.open .head{
+.stack-container.open .head {
   visibility: visible;
-  position: absolute; /* Allows us to move it relative to the stack */
-  top: -100px;         /* Move it 50px ABOVE the stack */
+  position: absolute;
+  top: -100px;
   left: 0;
-  width: 100%;        /* Ensure it spans the full width for centering */
-  text-align: center; /* Center the text */
-  z-index: 200;       /* IMPORTANT: Higher than the cover card (z-index 100) */
-
-  /* Optional Styling */
+  width: 100%;
+  text-align: center;
+  z-index: 200;
   color: white;       
   font-size: 2rem;
-  pointer-events: none; /* Let clicks pass through to the stack */
-  white-space: nowrap;  /* Prevent text wrapping */
+  pointer-events: none;
+  white-space: nowrap;
 }
+
+/* SKILLS TAGS */
+.stack-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.stack-row span {
+  background: #333;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid #444;
+  transition: all 0.3s ease;
+}
+
+.stack-row span:hover {
+  background: rgb(153, 0, 255);
+  border-color: rgb(153, 0, 255);
+}
+
 .stack-container {
   position: absolute;
   top: 160px;
@@ -31,64 +52,49 @@
   z-index: 9999;
   justify-content: center;
   align-items: center;
-  /* Allow clicks to pass through to your site when closed */
   pointer-events: none; 
-  
-  /* Transition for the dark background fade-in */
   background-color: rgba(0, 0, 0, 0); 
   transition: background-color 0.5s ease;
 }
 
 /* When open, darken background and block clicks */
 .stack-container.open {
-     position: fixed;
-  pointer-events: auto; /* Re-enable clicks so you can click projects */
-  background-color: rgba(18, 18, 18, 0.95); /* Dark overlay */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  pointer-events: auto;
+  background-color: rgba(18, 18, 18, 0.95);
 }
 
 /* 2. THE STACK ITSELF */
 .stack-area {
   position: absolute;
-  width: 400px;
+  width: 350px;
   height: 550px;
   cursor: pointer;
-  pointer-events: auto; /* Always clickable */
-  
-  /* --- INITIAL STATE: Top Right Corner --- */
+  pointer-events: auto;
   top: 20px;
   right: 50px;
-  transform: translate(0, 0) scale(0.6); /* Start smaller in the corner */
-  
-  /* Smooth movement animation */
+  transform: translate(0, 0) scale(0.6);
   transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-@media (max-width: 1367px){
-    .stack-container{
-         top: 150px;
-        height: 70vh;
-        left: -80px;
-    }
-    .stack-area{
-        width: 280px;
-        height: 380px;
-    }
-}
+
 /* --- OPEN STATE: Move to Center --- */
 .stack-container.open .stack-area {
-  /* Move top/right to 50% */
   top: 50%;
   right: 50%;
-  
-  /* Use translate to center it perfectly and scale it back up to full size */
   transform: translate(50%, -50%) scale(1); 
 }
 
-/* 3. CARD STYLES (Keep mostly the same) */
+/* 3. CARD STYLES */
 .card {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 90%;
   height: 100%;
   border-radius: 15px;
   background: white;
@@ -96,16 +102,13 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  
-  /* Wait for the stack to reach the center before exploding */
   transition: transform 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  
   transform: translate(0, 0) rotate(var(--r));
 }
 
 .card.cover {
   z-index: 100;
-  background:  linear-gradient(to bottom right, #5648ec, #cc55f7);
+  background: linear-gradient(135deg, #9333ea, #db2777);
   color: white;
   display: flex;
   justify-content: center;
@@ -114,14 +117,22 @@
   text-align: center;
 }
 
+.card.cover h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.card.cover p {
+  font-size: 1.1rem;
+}
+
 /* HOVER EFFECT: Only when the stack is in the corner (closed) */
 .stack-container:not(.open) .stack-area:hover {
-  transform: translate(0, 10px) scale(0.65); /* Slight nudge down */
+  transform: translate(0, 10px) scale(0.65);
 }
 
 /* --- EXPLOSION LOGIC --- */
 .stack-container.open .card.project-card {
-  /* The explosion happens after the move-to-center finishes */
   transform: translate(var(--x), var(--y)) rotate(0deg); 
   z-index: 10;
 }
@@ -140,7 +151,317 @@
 }
 
 /* Card Content Styling */
-.card img { width: 100%; height: 60%; object-fit: cover; }
-.card-content { padding: 15px; }
-.card-content h4 { margin: 0; font-size: 1.1rem; }
-.card-content p { font-size: 0.8rem; color: #666; }
+.card img { 
+  width: 100%; 
+  height: 60%; 
+  object-fit: cover; 
+}
+
+.card-content { 
+  padding: 15px; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-content h4 { 
+  margin: 0; 
+  font-size: 1.1rem; 
+  color: #333;
+}
+
+.project-link {
+  background: linear-gradient(to right, #9333ea, #db2777);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.project-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(147, 51, 234, 0.4);
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+
+/* Large Desktops (1440px and above) */
+@media (min-width: 1440px) {
+  .stack-area {
+    width: 450px;
+    height: 600px;
+    right: 80px;
+  }
+  
+  .stack-container.open .head {
+    font-size: 2.5rem;
+    top: -120px;
+  }
+  
+  .stack-row span {
+    font-size: 0.95rem;
+    padding: 9px 16px;
+  }
+}
+
+/* Standard Desktop (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .stack-container {
+    margin: 0px 50px;
+  }
+  
+  .stack-area {
+    width: 380px;
+    height: 520px;
+  }
+}
+
+/* Tablets & Small Laptops (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .stack-container {
+    top: 120px;
+    margin: 0px 30px;
+    width: calc(100vw - 60px);
+  }
+  
+  .stack-area {
+    width: 320px;
+    height: 450px;
+    right: 30px;
+    transform: translate(0, 0) scale(0.55);
+  }
+  
+  .stack-container.open .head {
+    font-size: 1.8rem;
+    top: -80px;
+  }
+  
+  .stack-row {
+    gap: 8px;
+  }
+  
+  .stack-row span {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  .card-content h4 {
+    font-size: 1rem;
+  }
+  
+  .project-link {
+    font-size: 0.8rem;
+    padding: 7px 12px;
+  }
+}
+
+/* Mobile Landscape & Large Phones (600px - 767px) */
+@media (max-width: 767px) and (min-width: 600px) {
+  .stack-container {
+    top: 100px;
+    margin: 0px 20px;
+    width: calc(100vw - 40px);
+  }
+  
+  .stack-area {
+    width: 280px;
+    height: 400px;
+    right: 20px;
+    top: 15px;
+    transform: translate(0, 0) scale(0.5);
+  }
+  
+  .stack-container.open .stack-area {
+    transform: translate(50%, -50%) scale(0.9);
+  }
+  
+  .stack-container.open .head {
+    font-size: 1.5rem;
+    top: -70px;
+  }
+  
+  .card img {
+    height: 55%;
+  }
+  
+  .card-content {
+    padding: 12px;
+  }
+  
+  .card-content h4 {
+    font-size: 0.95rem;
+  }
+  
+  .stack-row {
+    gap: 6px;
+  }
+  
+  .stack-row span {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+  
+  .project-link {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}
+
+/* Mobile Portrait (480px - 599px) */
+@media (max-width: 599px) and (min-width: 480px) {
+  .stack-container {
+    top: 80px;
+    margin: 0px 15px;
+    width: calc(100vw - 30px);
+  }
+  
+  .stack-area {
+    width: 250px;
+    height: 360px;
+    right: 15px;
+    top: 10px;
+    transform: translate(0, 0) scale(0.45);
+  }
+  
+  .stack-container.open .stack-area {
+    transform: translate(50%, -50%) scale(0.85);
+  }
+  
+  .stack-container.open .head {
+    font-size: 1.3rem;
+    top: -60px;
+  }
+  
+  .card.cover h3 {
+    font-size: 1.5rem;
+  }
+  
+  .card.cover p {
+    font-size: 0.9rem;
+  }
+  
+  .card img {
+    height: 50%;
+  }
+  
+  .card-content {
+    padding: 10px;
+  }
+  
+  .card-content h4 {
+    font-size: 0.9rem;
+  }
+  
+  .stack-row {
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .stack-row span {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+  
+  .project-link {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+}
+
+/* Small Mobile (below 480px) */
+@media (max-width: 479px) {
+  .stack-container {
+    top: 60px;
+    margin: 0px 10px;
+    width: calc(100vw - 20px);
+  }
+  
+  .stack-area {
+    width: 220px;
+    height: 320px;
+    right: 10px;
+    top: 10px;
+    transform: translate(0, 0) scale(0.4);
+  }
+  
+  .stack-container.open .stack-area {
+    transform: translate(50%, -50%) scale(0.8);
+  }
+  
+  .stack-container.open .head {
+    font-size: 1.1rem;
+    top: -50px;
+  }
+  
+  .card.cover h3 {
+    font-size: 1.3rem;
+  }
+  
+  .card.cover p {
+    font-size: 0.8rem;
+  }
+  
+  .card img {
+    height: 48%;
+  }
+  
+  .card-content {
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .card-content h4 {
+    font-size: 0.85rem;
+  }
+  
+  .stack-row {
+    gap: 4px;
+    margin-top: 8px;
+  }
+  
+  .stack-row span {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+  
+  .project-link {
+    font-size: 0.65rem;
+    padding: 5px 8px;
+  }
+}
+
+/* Extra Small Devices (below 360px) */
+@media (max-width: 359px) {
+  .stack-area {
+    width: 200px;
+    height: 290px;
+  }
+  
+  .stack-container.open .stack-area {
+    transform: translate(50%, -50%) scale(0.75);
+  }
+  
+  .stack-container.open .head {
+    font-size: 1rem;
+    top: -40px;
+  }
+  
+  .card.cover h3 {
+    font-size: 1.1rem;
+  }
+  
+  .card-content h4 {
+    font-size: 0.8rem;
+  }
+  
+  .stack-row span {
+    font-size: 0.6rem;
+    padding: 3px 5px;
+  }
+}

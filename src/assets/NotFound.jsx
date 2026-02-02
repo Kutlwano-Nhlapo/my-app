@@ -190,8 +190,7 @@ const NotFound = () => {
       <div className="notfound-wrapper">
         <div className="stars" id="stars"></div>
         
-        <div className="notfound-container">
-          <div className="astronaut">🚀</div>
+        <div className="notfound-container">        
           <div className="error-code glitch">404</div>
           <h1> We Have a Problem</h1>
           <p>The page you're looking for has drifted off into space. It might have been moved, deleted, or never existed in the first place.</p>
